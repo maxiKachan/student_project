@@ -14,7 +14,7 @@ public class StudentOrderValidator {
     private StudentValidator studentVal;
     private MailSender mailSender;
 
-    public StudentOrderValidator(){
+    public StudentOrderValidator() {
         citiRegisterVal = new CitiRegisterValidator();
         weddingVal = new WeddingValidator();
         childrenVal = new ChildrenValidator();
@@ -27,49 +27,59 @@ public class StudentOrderValidator {
         sov.checkAll();
     }
 
-    public void checkAll(){
-        StudentOrder so = readStudentOrder();
-        while (true) {
-            if (so == null) {
-                break;
-            } else {
+    public void checkAll() {
+        StudentOrder [] soArray = readStudentOrders();
 
-                AnswerCitiRegister citiAnswer = checkCitiRegister(so);
-                if (!citiAnswer.success){
-                    break;
-                }
-                AnswerWedding wedAnswer = checkWedding(so);
-                AnswerChildren childrenAnswer = checkChildren(so);
-                AnswerStudent studAnswer = checkStudent(so);
+//        for(int i = 0; i < soArray.length; i++){
+//            System.out.println();
+//            checkOneOrder(soArray[i]);
+//        }
 
-                sendMail(so);
+            for (StudentOrder so : soArray){
+                System.out.println();
+                checkOneOrder(so);
             }
-        }
     }
 
-    public StudentOrder readStudentOrder(){
+    public void checkOneOrder(StudentOrder so){
+        AnswerCitiRegister citiAnswer = checkCitiRegister(so);
+
+        AnswerWedding wedAnswer = checkWedding(so);
+        AnswerChildren childrenAnswer = checkChildren(so);
+        AnswerStudent studAnswer = checkStudent(so);
+
+        sendMail(so);
+    }
+
+    public StudentOrder[] readStudentOrders() {
+        StudentOrder[] soArray = new StudentOrder[3];
+
+        for (int i = 0; i < soArray.length; i++) {
+            soArray[i] = SaveStudentOrder.buildStudentOrder(i);
+        }
+
         StudentOrder so = new StudentOrder();
 
-        return so;
+        return soArray;
     }
 
-    public AnswerCitiRegister checkCitiRegister(StudentOrder so){
+    public AnswerCitiRegister checkCitiRegister(StudentOrder so) {
         return citiRegisterVal.checkCitiRegister(so);
     }
 
-    public AnswerWedding checkWedding(StudentOrder so){
+    public AnswerWedding checkWedding(StudentOrder so) {
         return weddingVal.checkWedding(so);
     }
 
-    public AnswerChildren checkChildren(StudentOrder so){
+    public AnswerChildren checkChildren(StudentOrder so) {
         return childrenVal.checkChildren(so);
     }
 
-    public AnswerStudent checkStudent(StudentOrder so){
+    public AnswerStudent checkStudent(StudentOrder so) {
         return studentVal.checkStudent(so);
     }
 
-    public void sendMail(StudentOrder so){
+    public void sendMail(StudentOrder so) {
         mailSender.sendMail(so);
     }
 }
