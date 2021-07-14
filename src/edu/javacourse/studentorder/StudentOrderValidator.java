@@ -3,19 +3,19 @@ package edu.javacourse.studentorder;
 import edu.javacourse.studentorder.domain.*;
 import edu.javacourse.studentorder.mail.MailSender;
 import edu.javacourse.studentorder.validator.ChildrenValidator;
-import edu.javacourse.studentorder.validator.CitiRegisterValidator;
+import edu.javacourse.studentorder.validator.CityRegisterValidator;
 import edu.javacourse.studentorder.validator.StudentValidator;
 import edu.javacourse.studentorder.validator.WeddingValidator;
 
 public class StudentOrderValidator {
-    private CitiRegisterValidator citiRegisterVal;
+    private CityRegisterValidator citiRegisterVal;
     private WeddingValidator weddingVal;
     private ChildrenValidator childrenVal;
     private StudentValidator studentVal;
     private MailSender mailSender;
 
     public StudentOrderValidator() {
-        citiRegisterVal = new CitiRegisterValidator();
+        citiRegisterVal = new CityRegisterValidator();
         weddingVal = new WeddingValidator();
         childrenVal = new ChildrenValidator();
         studentVal = new StudentValidator();
