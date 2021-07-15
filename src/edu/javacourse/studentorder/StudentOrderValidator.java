@@ -44,9 +44,9 @@ public class StudentOrderValidator {
     public void checkOneOrder(StudentOrder so){
         AnswerCitiRegister citiAnswer = checkCitiRegister(so);
 
-        AnswerWedding wedAnswer = checkWedding(so);
-        AnswerChildren childrenAnswer = checkChildren(so);
-        AnswerStudent studAnswer = checkStudent(so);
+//        AnswerWedding wedAnswer = checkWedding(so);
+//        AnswerChildren childrenAnswer = checkChildren(so);
+//        AnswerStudent studAnswer = checkStudent(so);
 
         sendMail(so);
     }
@@ -57,8 +57,6 @@ public class StudentOrderValidator {
         for (int i = 0; i < soArray.length; i++) {
             soArray[i] = SaveStudentOrder.buildStudentOrder(i);
         }
-
-        StudentOrder so = new StudentOrder();
 
         return soArray;
     }
