@@ -3,6 +3,7 @@ package edu.javacourse.studentorder.domain;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class StudentOrder {
     private long studentOrderID;
@@ -11,7 +12,7 @@ public class StudentOrder {
     private String marriageOffice;
     private Adult husband;
     private Adult wife;
-    private Child child;
+    private List<Child> children;
 
     public long getStudentOrderID() {
         return studentOrderID;
@@ -61,11 +62,14 @@ public class StudentOrder {
         this.wife = wife;
     }
 
-    public Child getChild() {
-        return child;
+    public List<Child> getChildren() {
+        return children;
     }
 
-    public void setChild(Child child) {
-        this.child = child;
+    public void addChild(Child child) {
+        if (children == null){
+            children = new ArrayList<>(5);
+        }
+        children.add(child);
     }
 }
