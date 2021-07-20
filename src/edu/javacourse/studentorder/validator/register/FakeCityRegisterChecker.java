@@ -5,6 +5,7 @@ import edu.javacourse.studentorder.domain.Child;
 import edu.javacourse.studentorder.domain.register.CityRegisterResponse;
 import edu.javacourse.studentorder.domain.Person;
 import edu.javacourse.studentorder.exception.CityRegisterException;
+import edu.javacourse.studentorder.exception.TransportException;
 
 public class FakeCityRegisterChecker implements CityRegisterChecker {
 
@@ -14,21 +15,28 @@ public class FakeCityRegisterChecker implements CityRegisterChecker {
     public static final String BAD_2 = "2001";
     public static final String ERROR_1 = "1002";
     public static final String ERROR_2 = "2002";
+    public static final String ERROR_T_1 = "1003";
+    public static final String ERROR_T_2 = "2003";
 
-    public CityRegisterResponse checkPerson(Person person) throws CityRegisterException {
+    public CityRegisterResponse checkPerson(Person person) throws CityRegisterException, TransportException {
         CityRegisterResponse res = new CityRegisterResponse();
 
         if (person instanceof Adult){
             Adult a = (Adult) person;
-            if (a.getPassportSerial().equals(GOOD_1) || a.getPassportSerial().equals(GOOD_2)){
+            String ps = a.getPassportSerial();
+            if (ps.equals(GOOD_1) || ps.equals(GOOD_2)){
                 res.setExisting(true);
                 res.setTemporal(false);
             }
-            if (a.getPassportSerial().equals(BAD_1) || a.getPassportSerial().equals(BAD_2)){
+            if (ps.equals(BAD_1) || ps.equals(BAD_2)){
                 res.setExisting(false);
             }
-            if (a.getPassportSerial().equals(ERROR_1) || a.getPassportSerial().equals(ERROR_2)){
-                CityRegisterException exception = new CityRegisterException("Fake ERROR");
+            if (ps.equals(ERROR_1) || ps.equals(ERROR_2)){
+                CityRegisterException exception = new CityRegisterException("1", "Fake ERROR" + ps);
+                throw exception;
+            }
+            if (ps.equals(ERROR_T_1) || ps.equals(ERROR_T_2)){
+                TransportException exception = new TransportException("Transport ERROR" + ps);
                 throw exception;
             }
         }
