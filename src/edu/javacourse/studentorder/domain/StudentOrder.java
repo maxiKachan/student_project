@@ -9,7 +9,7 @@ public class StudentOrder {
     private long studentOrderID;
     private String marriageCertificateId;
     private LocalDate marriageDate;
-    private String marriageOffice;
+    private RegisterOffice marriageOffice;
     private Adult husband;
     private Adult wife;
     private List<Child> children;
@@ -38,11 +38,11 @@ public class StudentOrder {
         this.marriageDate = marriageDate;
     }
 
-    public String getMarriageOffice() {
+    public RegisterOffice getMarriageOffice() {
         return marriageOffice;
     }
 
-    public void setMarriageOffice(String marriageOffice) {
+    public void setMarriageOffice(RegisterOffice marriageOffice) {
         this.marriageOffice = marriageOffice;
     }
 

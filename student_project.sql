@@ -97,6 +97,12 @@ CREATE TABLE jc_student_child
     FOREIGN KEY (c_register_office_id) REFERENCES jc_register_office (r_office_id) ON DELETE RESTRICT
 );
 
+
+
+
+
+
+
 INSERT INTO jc_street (street_code, street_name) VALUES (1, 'Street First');
 INSERT INTO jc_street (street_code, street_name) VALUES (2, 'Street Second'), (3,'Third');
 
@@ -118,3 +124,11 @@ SELECT street_code sc, street_name sn FROM jc_street WHERE street_code IN (1, 3)
 
 SELECT street_code FROM (SELECT street_code, street_name FROM jc_street WHERE street_code IN (1, 3)) s1;
 SELECT s1.* FROM (SELECT street_code, street_name FROM jc_street WHERE street_code IN (1, 3)) s1;
+
+SELECT street_code, street_name FROM jc_street WHERE street_name LIKE '%Firs%';
+SELECT street_code, street_name FROM jc_street WHERE UPPER(street_name) LIKE UPPER('%firs%');
+
+SELECT * FROM jc_country_struct WHERE area_id LIKE '__0000000000' AND area_id <> '';
+SELECT * FROM jc_country_struct WHERE area_id LIKE '02___0000000' AND area_id <> '020000000000';
+SELECT * FROM jc_country_struct WHERE area_id LIKE '02001___0000' AND area_id <> '020010000000';
+SELECT * FROM jc_country_struct WHERE area_id LIKE '02001001____' AND area_id <> '020010010000';
