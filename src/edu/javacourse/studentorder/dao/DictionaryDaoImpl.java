@@ -30,7 +30,9 @@ public class DictionaryDaoImpl implements DictionaryDao {
             stat.setString(1, "%" + pattern + "%");
             ResultSet rs = stat.executeQuery();
             while (rs.next()) {
-                Street str = new Street(rs.getLong("street_code"), rs.getString("street_name"));
+                Street str = new Street(
+                        rs.getLong("street_code"),
+                        rs.getString("street_name"));
                 result.add(str);
             }
         } catch (SQLException e) {
@@ -123,6 +125,7 @@ public class DictionaryDaoImpl implements DictionaryDao {
         throw new SQLException("Invalid parameter 'areaId'");
     }
 
+    //TODO refactoring - make one method
     private Connection getConnection() throws SQLException {
         Connection con = DriverManager.getConnection(Config.getProperty(Config.DB_URL),
                 Config.getProperty(Config.DB_LOGIN),

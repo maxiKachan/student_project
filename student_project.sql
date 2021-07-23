@@ -41,6 +41,8 @@ CREATE TABLE jc_register_office
 CREATE TABLE jc_student_order
 (
     student_order_id SERIAL,
+    student_order_status int NOT NULL ,
+    student_order_date timestamp NOT NULL ,
     h_sur_name varchar(100) NOT NULL,
     h_given_name varchar(100) NOT NULL,
     h_patronymic varchar(100) NOT NULL ,
@@ -132,3 +134,5 @@ SELECT * FROM jc_country_struct WHERE area_id LIKE '__0000000000' AND area_id <>
 SELECT * FROM jc_country_struct WHERE area_id LIKE '02___0000000' AND area_id <> '020000000000';
 SELECT * FROM jc_country_struct WHERE area_id LIKE '02001___0000' AND area_id <> '020010000000';
 SELECT * FROM jc_country_struct WHERE area_id LIKE '02001001____' AND area_id <> '020010010000';
+
+SELECT * FROM jc_student_order;

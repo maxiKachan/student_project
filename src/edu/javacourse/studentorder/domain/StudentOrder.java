@@ -1,12 +1,15 @@
 package edu.javacourse.studentorder.domain;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class StudentOrder {
     private long studentOrderID;
+    private LocalDateTime studentOrderDate;
+    private StudentOrderStatus studentOrderStatus;
     private String marriageCertificateId;
     private LocalDate marriageDate;
     private RegisterOffice marriageOffice;
@@ -20,6 +23,22 @@ public class StudentOrder {
 
     public void setStudentOrderID(long studentOrderID) {
         this.studentOrderID = studentOrderID;
+    }
+
+    public LocalDateTime getStudentOrderDate() {
+        return studentOrderDate;
+    }
+
+    public void setStudentOrderDate(LocalDateTime studentOrderDate) {
+        this.studentOrderDate = studentOrderDate;
+    }
+
+    public StudentOrderStatus getStudentOrderStatus() {
+        return studentOrderStatus;
+    }
+
+    public void setStudentOrderStatus(StudentOrderStatus studentOrderStatus) {
+        this.studentOrderStatus = studentOrderStatus;
     }
 
     public String getMarriageCertificateId() {
