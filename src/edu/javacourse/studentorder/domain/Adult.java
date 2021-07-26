@@ -7,8 +7,11 @@ public class Adult extends Person{
     private String passportNumber;
     private LocalDate issueDate;
     private PassportOffice passportOffice;
-    private String university;
+    private University university;
     private String studentID;
+
+    public Adult() {
+    }
 
     public Adult(String surName, String givenName, String patronymic, LocalDate dayOfBirth) {
         super(surName, givenName, patronymic, dayOfBirth);
@@ -46,11 +49,11 @@ public class Adult extends Person{
         this.passportOffice = passportOffice;
     }
 
-    public String getUniversity() {
+    public University getUniversity() {
         return university;
     }
 
-    public void setUniversity(String university) {
+    public void setUniversity(University university) {
         this.university = university;
     }
 
