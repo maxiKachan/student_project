@@ -7,6 +7,9 @@ public class Child extends Person{
     private LocalDate issueDate;
     private RegisterOffice issueDepartment;
 
+    public Child(){
+    }
+
     public Child(String surName, String givenName, String patronymic, LocalDate dayOfBirth) {
         super(surName, givenName, patronymic, dayOfBirth);
     }

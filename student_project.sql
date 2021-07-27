@@ -152,3 +152,19 @@ SELECT * FROM jc_country_struct WHERE area_id LIKE '02001___0000' AND area_id <>
 SELECT * FROM jc_country_struct WHERE area_id LIKE '02001001____' AND area_id <> '020010010000';
 
 SELECT * FROM jc_student_order;
+
+SELECT so.*, ro.r_office_area_id, ro.r_office_name,
+po_h.p_office_area_id AS h_p_office_area_id, po_h.p_office_name AS h_p_office_name,
+po_w.p_office_area_id AS w_p_office_area_id, po_w.p_office_name AS w_p_office_name
+FROM jc_student_order so
+INNER JOIN jc_register_office ro ON ro.r_office_id = so.register_office_id
+INNER JOIN jc_passport_office po_h ON po_h.p_office_id = so.h_passport_office_id
+INNER JOIN jc_passport_office po_w ON po_w.p_office_id = so.h_passport_office_id
+WHERE student_order_status = 0 ORDER BY student_order_date;
+
+UPDATE jc_student_order SET register_office_id = 2 WHERE student_order_id IN (1,3,5,7);
+
+SELECT soc.*, ro.r_office_area_id, ro.r_office_name
+FROM jc_student_child soc
+INNER JOIN jc_register_office ro ON ro.r_office_id = soc.c_register_office_id
+WHERE soc.student_order_id IN (1,2,3);
